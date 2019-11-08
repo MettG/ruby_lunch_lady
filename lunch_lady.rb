@@ -179,10 +179,8 @@ class User
 				@dishes[:main] = nil
 			end
 			def clear
-				@wallet.refund(@total)
-				@total = 0
-				@calories = 0
-				@dishes = {main: nil, sides: []}
+				clear_main
+				clear_sides
 			end
 		end
 end
@@ -294,7 +292,7 @@ class Menu
 			puts "Press 'a' to add to order or enter any other key to look at the other sides.".green
 			if gets.strip == "a"
 				@user.add_side(@side_dishes[i])
-				puts "Add another side? (y/n)"
+				puts "Add another side? (y/n)".green
 				if gets.strip == "y"
 					select_side
 				end
